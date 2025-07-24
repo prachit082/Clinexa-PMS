@@ -1,10 +1,8 @@
-import { z } from "zod";
-import { PatientFormValidation } from "@/lib/validation";
-
 export const GenderOptions = ["Male", "Female", "Other"];
 
-export const PatientFormDefaultValues: z.infer<typeof PatientFormValidation> = {
-  name: "",
+export const PatientFormDefaultValues = {
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   birthDate: new Date(Date.now()),
