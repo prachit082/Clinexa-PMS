@@ -103,7 +103,7 @@ const RegisterForm = ({ user }: { user: User }) => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit as any)}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="flex-1 space-y-12"
       >
         <section className="space-y-4">
