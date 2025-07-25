@@ -25,8 +25,8 @@ const RequestSuccess = async ({
             src="/assets/icons/logo-full.svg"
             height={1000}
             width={1000}
-            alt="logo"
-            className="h-10 w-fit"
+            alt="patient"
+            className="mb-12 h-10 w-fit"
           />
         </Link>
 
