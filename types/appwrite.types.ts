@@ -18,9 +18,6 @@ export interface Patient extends Models.Document {
   currentMedication: string | undefined;
   familyMedicalHistory: string | undefined;
   pastMedicalHistory: string | undefined;
-  identificationType: string | undefined;
-  identificationNumber: string | undefined;
-  identificationDocument?: IdentificationDocumentData;
   privacyConsent: boolean;
   disclosureConsent: boolean;
   treatmentConsent: boolean;
@@ -35,10 +32,4 @@ export interface Appointment extends Models.Document {
   note: string;
   userId: string;
   cancellationReason: string | null;
-}
-
-export interface IdentificationDocumentData {
-  buffer: string;
-  fileName: string;
-  mimeType: string;
 }

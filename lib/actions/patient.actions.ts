@@ -56,22 +56,9 @@ export const getUser = async (userId: string) => {
 
 // REGISTER PATIENT
 export const registerPatient = async ({
-  identificationDocument,
   ...patient
 }: RegisterUserParams) => {
   try {
-    // Upload file ->  // https://appwrite.io/docs/references/cloud/client-web/storage#createFile
-    let file;
-    if (identificationDocument) {
-      const bufferFile = Buffer.from(identificationDocument.buffer, "base64");
-      const fileObj = new PolyfillFile(
-        [bufferFile],
-        identificationDocument.fileName,
-        { type: identificationDocument.mimeType }
-      );
-
-      file = await storage.createFile(BUCKET_ID!, ID.unique(), fileObj);
-    }
 
     // Create new patient document -> https://appwrite.io/docs/references/cloud/server-nodejs/databases#createDocument
     const newPatient = await databases.createDocument(
@@ -79,10 +66,6 @@ export const registerPatient = async ({
       PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
-        identificationDocumentId: file?.$id ? file.$id : null,
-        identificationDocumentUrl: file?.$id
-          ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`
-          : null,
         ...patient,
       }
     );

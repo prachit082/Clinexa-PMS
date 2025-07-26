@@ -5,7 +5,7 @@ declare type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-declare type Gender = "male" | "female" | "other";
+declare type Gender = "Male" | "Female" | "Other";
 declare type Status = "pending" | "scheduled" | "cancelled";
 
 declare interface CreateUserParams {
@@ -15,12 +15,6 @@ declare interface CreateUserParams {
 }
 declare interface User extends CreateUserParams {
   $id: string;
-}
-
-declare interface IdentificationDocumentData {
-  buffer: string;
-  fileName: string;
-  mimeType: string;
 }
 
 declare interface RegisterUserParams extends CreateUserParams {
@@ -38,9 +32,6 @@ declare interface RegisterUserParams extends CreateUserParams {
   currentMedication: string | undefined;
   familyMedicalHistory: string | undefined;
   pastMedicalHistory: string | undefined;
-  identificationType: string | undefined;
-  identificationNumber: string | undefined;
-  identificationDocument?: IdentificationDocumentData;
   privacyConsent: boolean;
   disclosureConsent: boolean;
   treatmentConsent: boolean;

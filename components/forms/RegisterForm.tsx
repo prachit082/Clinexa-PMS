@@ -11,12 +11,7 @@ import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SelectItem } from "@/components/ui/select";
-import {
-  Doctors,
-  GenderOptions,
-  IdentificationTypes,
-  PatientFormDefaultValues,
-} from "@/constants";
+import { Doctors, GenderOptions, PatientFormDefaultValues } from "@/constants";
 import { registerPatient } from "@/lib/actions/patient.actions";
 import { PatientFormValidation } from "@/lib/validation";
 
@@ -43,24 +38,6 @@ const RegisterForm = ({ user }: { user: User }) => {
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);
 
-    // Store file info in form data as
-    let identificationDocumentData;
-    if (
-      values.identificationDocument &&
-      values.identificationDocument?.length > 0
-    ) {
-      const file = values.identificationDocument[0];
-      const arrayBuffer = await file.arrayBuffer();
-      // Convert to base64 string for transport
-      const bufferString = Buffer.from(arrayBuffer).toString("base64");
-
-      identificationDocumentData = {
-        buffer: bufferString,
-        fileName: file.name,
-        mimeType: file.type,
-      };
-    }
-
     try {
       const patient = {
         userId: user.$id,
@@ -80,9 +57,6 @@ const RegisterForm = ({ user }: { user: User }) => {
         currentMedication: values.currentMedication,
         familyMedicalHistory: values.familyMedicalHistory,
         pastMedicalHistory: values.pastMedicalHistory,
-        identificationType: values.identificationType,
-        identificationNumber: values.identificationNumber,
-        identificationDocument: identificationDocumentData,
         privacyConsent: values.privacyConsent,
         disclosureConsent: values.disclosureConsent,
         treatmentConsent: values.treatmentConsent,
@@ -307,46 +281,6 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
             />
           </div>
-        </section>
-
-        <section className="space-y-6">
-          <div className="mb-9 space-y-1">
-            <h2 className="sub-header">Identification and Verfication</h2>
-          </div>
-
-          <CustomFormField
-            fieldType={FormFieldType.SELECT}
-            control={form.control}
-            name="identificationType"
-            label="Identification Type"
-            placeholder="Select identification type"
-          >
-            {IdentificationTypes.map((type, i) => (
-              <SelectItem key={type + i} value={type}>
-                {type}
-              </SelectItem>
-            ))}
-          </CustomFormField>
-
-          <CustomFormField
-            fieldType={FormFieldType.INPUT}
-            control={form.control}
-            name="identificationNumber"
-            label="Identification Number"
-            placeholder="123456789"
-          />
-
-          <CustomFormField
-            fieldType={FormFieldType.SKELETON}
-            control={form.control}
-            name="identificationDocument"
-            label="Scanned Copy of Identification Document"
-            renderSkeleton={(field) => (
-              <FormControl>
-                <FileUploader files={field.value} onChange={field.onChange} />
-              </FormControl>
-            )}
-          />
         </section>
 
         <section className="space-y-6">
