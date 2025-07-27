@@ -102,7 +102,6 @@ export const getRecentAppointmentList = async () => {
 export const updateAppointment = async ({
   appointmentId,
   userId,
-  timeZone,
   appointment,
   type,
 }: UpdateAppointmentParams) => {
