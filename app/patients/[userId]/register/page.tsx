@@ -4,11 +4,8 @@ import { redirect } from "next/navigation";
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getPatient, getUser } from "@/lib/actions/patient.actions";
 
-const Register = async ({
-  params: { userId },
-}: {
-  params: { userId: string };
-}) => {
+const Register = async ({ params }: { params: { userId: string } }) => {
+  const { userId } = params;
   const user = await getUser(userId);
   const patient = await getPatient(userId);
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PatientForm } from "@/components/forms/PatientForm";
 import { PasskeyModal } from "@/components/PasskeyModal";
 
-const Home = ({ searchParams }: { searchParams: { admin: string } }) => {
+const Home = ({ searchParams }: { searchParams?: { admin?: string } }) => {
   const isAdmin = searchParams?.admin === "true";
 
   return (

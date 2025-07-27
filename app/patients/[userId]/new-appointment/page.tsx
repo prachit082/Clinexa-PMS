@@ -3,11 +3,8 @@ import Image from "next/image";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
 
-const Appointment = async ({
-  params: { userId },
-}: {
-  params: { userId: string };
-}) => {
+const Appointment = async ({ params }: { params: { userId: string } }) => {
+  const { userId } = params;
   const patient = await getPatient(userId);
 
   return (

@@ -8,11 +8,12 @@ import { formatDateTime } from "@/lib/utils";
 
 const RequestSuccess = async ({
   searchParams,
-  params: { userId },
+  params,
 }: {
-  searchParams: { appointmentId: string };
+  searchParams?: { appointmentId?: string };
   params: { userId: string };
 }) => {
+  const { userId } = params;
   const appointmentId = (searchParams?.appointmentId as string) || "";
   const appointment = await getAppointment(appointmentId);
 
