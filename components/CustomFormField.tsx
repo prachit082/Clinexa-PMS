@@ -122,7 +122,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
               selected={field.value}
               onChange={(
                 date: Date | null,
-                event?:
+                _event?:
                   | React.MouseEvent<HTMLElement>
                   | React.KeyboardEvent<HTMLElement>
               ) => field.onChange(date)}
